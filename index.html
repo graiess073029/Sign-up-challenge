@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <script src="./validator/validator.js"> </script>
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Frontend Mentor | Intro component with sign up form</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+  <div class="root">
+    <div class="root_inner">
+      <div class="left">
+        <h1>Learn to code by watching others</h1>
+        <p>See how experienced developers solve problems in real-time. <br> Watching scripted tutorials is great, 
+          but understanding how <br> developers think is invaluable. </p>
+      </div>
+      <main class="right">
+
+        <header class="try-now">
+          <p> <span class="free">Try it free 7 days </span> then <span class="breakline"> $20/mo. thereafter</span></p>
+        </header>
+
+        <form class="login">
+          <div class="firstname">
+            <img src="./images/icon-error.svg" alt="">
+            <input name="firstname" placeholder="First Name" type="text">
+            <p class="error">First Name cannot be empty</p>
+          </div>
+          <div class="lastname">
+            <img src="./images/icon-error.svg" alt="">
+            <input  name="lastname" placeholder="Last Name" type="text">
+            <p class="error">Last Name cannot be empty</label>
+          </div>
+          <div class="email">
+            <img src="./images/icon-error.svg" alt="">
+            <input  name="email" placeholder="Email" type="text">
+            <p class="error">Email cannot be empty</label>
+          </div>
+          <div class="password">
+            <img src="./images/icon-error.svg" alt="">
+            <input name="password" placeholder="Password" type="password">
+            <p class="error">Password cannot be empty</p>
+          </div>
+          <button type="button" class="submit">Claim your free trial</button>
+          <footer class="bottom">
+            <label class="laste">By clicking the button, you are agreeing to our <span class="terms">Terms and Services</span></label>
+          </footer>
+        </formm>
+      </main>
+    </div>
+  </div> 
+  <script type="text/javascript" src="./validator/validator.min.js"></script>
+  <script type="text/javascript">   
+    let inputs = {firstname : document.getElementsByClassName("firstname")[0].children[1], lastname : document.getElementsByClassName("lastname")[0].children[1], email : document.getElementsByClassName("email")[0].children[1], password : document.getElementsByClassName("password")[0].children[1]}
+    let test = [false,false,false,false]
+    document.getElementsByClassName("submit")[0].addEventListener("click",(event)=>{
+
+      if(!validator.isEmail(inputs.email.value)){
+        test[Object.keys(inputs).indexOf("email")] = false
+        inputs.email.className = "invalid"
+        inputs.email.parentElement.children[0].style.display = "block"
+        inputs.email.style.border = "1px solid hsl(0, 100%, 74%)"
+        inputs.email.style.color = "hsl(0, 100%, 74%)"
+        inputs.email.placeholder = "email@example/com"
+        inputs.email.parentElement.children[2].style.display = "block"
+        inputs.email.parentElement.children[2].textContent = `Look like this is not an email`
+      }
+
+      else{
+        test[Object.keys(inputs).indexOf("email")] = true
+        test = true
+        inputs.email.className = ""
+        inputs.email.style.border = "1px solid hsl(246, 25%, 77%)"
+        inputs.email.style.color = "hsl(246, 25%, 77%)"
+        inputs.email.placeholder = "Email"
+        inputs.email.parentElement.children[2].style.display = "none"
+        inputs.email.parentElement.children[2].textContent = ``
+      }
+
+      for (i in inputs) {
+            
+            if(typeof inputs[i].value != "string" || inputs[i].value.length == 0){
+              test[Object.keys(inputs).indexOf(i)] = false
+              inputs[i].parentElement.children[0].style.display = "block"
+              
+              inputs[i].parentElement.children[1].placeholder = ""            
+              inputs[i].parentElement.children[1].style.border = "1px solid hsl(0, 100%, 74%)"
+              
+              inputs[i].parentElement.children[2].style.display = "block"
+              inputs[i].parentElement.children[2].textContent = `${i[0].toUpperCase() + i.slice(1)} cannot be empty`
+              
+              continue
+            } 
+
+            if(inputs[i].className != "invalid"){
+              test[Object.keys(inputs).indexOf(i)] = true
+              inputs[i].parentElement.children[0].style.display = "none" 
+            
+              inputs[i].parentElement.children[1].style.border = "1px solid hsl(246, 25%, 77%)"
+              inputs[i].parentElement.children[1].placeholder = i[0].toUpperCase() + i.slice(1)                       
+              
+              inputs[i].parentElement.children[2].style.display = "none"
+              inputs[i].parentElement.children[2].textContent = ""
+
+               continue
+            }
+            inputs[i].value = ""
+        }  
+    
+      test.forEach(element=>{
+        if(element){}
+      })
+    })
+  </script> 
+</body>
+</html>
+
