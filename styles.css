@@ -310,11 +310,6 @@
         letter-spacing: 1px;
     }
     
-    .submit:hover{
-        opacity: 0.5;
-    }
-    
-    
     .error{
         position: relative;
         left: 30%;
