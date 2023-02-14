@@ -324,8 +324,11 @@
         display: none;
     }
     
-    .laste{
+    .bottom{
         text-align: center;
+    }
+    
+    .laste{
         font-size: 12px;
         color: hsl(246, 25%, 77%);
     }
